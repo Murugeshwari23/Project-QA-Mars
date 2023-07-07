@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Emit;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using Project_QAMars.Pages;
@@ -10,65 +11,58 @@ namespace Project_QAMars.StepDefinitions
     [Binding]
     public class LanguageFeatureStepDefinitions : CommonDriver
     {
+        LanguagePage LanguagePageObj;
+        LoginPage LoginPageObj;
+
+        public LanguageFeatureStepDefinitions()
+        {
+            LanguagePageObj = new LanguagePage();
+            LoginPageObj = new LoginPage();
+        }
+
+        [Given(@"User is logged into localhost URL successfull")]
+        public void GivenUserIsLoggedIntoLocalhostURLSuccessfull()
+        {
+            //Login page object initialization and definition
+            LoginPageObj.LoginSteps();
+        }
+
+        [When(@"Adding new '([^']*)' and '([^']*)' to the language list")]
+        public void WhenAddingNewAndToTheLanguageList(string language, string level)
+        {
+            //Adding new language to the language list
+            LanguagePageObj.AddLanguage(language, level);
+        }
+
+        [Then(@"New record with '([^']*)' and '([^']*)' are added successfully")]
+        public void ThenNewRecordWithAndAreAddedSuccessfully(string language, string level)
+        {
+            //Assertion of added languages
+            string newLanguage = LanguagePageObj.getLanguage();
+            string newLevel = LanguagePageObj.getLevel();
+            Assert.AreEqual(language, newLanguage, "Actual language and expected language do not match.");
+            Assert.AreEqual(level, newLevel, "Actual language level and expected language level do not match");
+        }
+
         [Given(@"User is logged into localhost URL successfully")]
         public void GivenUserIsLoggedIntoLocalhostURLSuccessfully()
         {
-            //Open chrome browser
-            driver = new ChromeDriver();
-
-            //Login page object initialization and defnition
-            LoginPage LoginPageObj = new LoginPage();
-            LoginPageObj.LoginSteps(driver);
-        }
-
-        [When(@"Navigate to language tab in the profile page")]
-        public void WhenNavigateToLanguageTabInTheProfilePage()
-        {
-            //Clicking on Language tab button in the Home page
-            ProfilePage ProfilePageObj = new ProfilePage();
-            ProfilePageObj.GoToLanguageTab(driver);
-        }
-
-        [When(@"Add new '([^']*)' and '([^']*)' to the language list")]
-        public void WhenAddNewAndToTheLanguageList(string language, string level)
-        {   
-            //Adding new language to the language list
-            LanguagePage LanguagePageObj = new LanguagePage();
-            LanguagePageObj.AddLanguage(driver, language, level);
-        }
-
-        [Then(@"New details '([^']*)' and '([^']*)' are added successfully")]
-        public void ThenNewDetailsAndAreAddedSuccessfully(string language, string level)
-        {
-            //Assertion of added languages
-            LanguagePage LanguagePageObj = new LanguagePage();
-
-            string newLanguage = LanguagePageObj.getLanguage(driver);
-            string newLevel = LanguagePageObj.getLevel(driver);
-
-            Assert.AreEqual(language, newLanguage, "Actual language and expected language do not match.");
-            Assert.AreEqual(level, newLevel, "Actual language level and expected language level do not match");
-
+            LoginPageObj.LoginSteps();
         }
 
         [When(@"Update '([^']*)' and '([^']*)' on an existing language record")]
         public void WhenUpdateAndOnAnExistingLanguageRecord(string language, string level)
         {
-            //update an existing language in the language list
-            LanguagePage LanguagePageObj = new LanguagePage();
-            LanguagePageObj.UpdateLanguage(driver, language, level);
+            //update an existing language in the language list  
+            LanguagePageObj.UpdateLanguage(language, level);
         }
 
         [Then(@"The record should been updated '([^']*)' and '([^']*)' successfully")]
         public void ThenTheRecordShouldBeenUpdatedAndSuccessfully(string language, string level)
         {
-            //Assertion of updated languages
-            LanguagePage LanguagePageObj = new LanguagePage();
-
-            string createdLanguage = LanguagePageObj.getEditedLanguage(driver);
-            string createdLevel = LanguagePageObj.getEditedLevel(driver);
-
-
+            //Assertion of updated language
+            string createdLanguage = LanguagePageObj.getEditedLanguage();
+            string createdLevel = LanguagePageObj.getEditedLevel();
             Assert.AreEqual(language, createdLanguage, "Edited language and expected language do not match.");
             Assert.AreEqual(level, createdLevel, "Edited level and created level do not match");
         }
@@ -77,26 +71,19 @@ namespace Project_QAMars.StepDefinitions
         public void WhenDeleteTheRecordAndFromTheLanguageList(string language, string level)
         {
             //Delete the record from the language list
-            LanguagePage LanguagePageObj = new LanguagePage();
-            LanguagePageObj.DeleteLanguage(driver, language, level);
+            LanguagePageObj.DeleteLanguage(language, level);
         }
 
         [Then(@"The record '([^']*)' and '([^']*)' should be deleted successfully")]
         public void ThenTheRecordShouldBeDeletedSuccessfully(string language, string level)
         {
-            LanguagePage LanguagePageObj = new LanguagePage();
-
-            string deletedElement = LanguagePageObj.GetDeletedElement(driver);
-            string deletedLevel = LanguagePageObj.GetDeletedLevel(driver);
+            //Assertion of deleted language and level from the list
+            string deletedElement = LanguagePageObj.GetDeletedElement();
+            string deletedLevel = LanguagePageObj.GetDeletedLevel();
 
             Assert.AreNotEqual(language, deletedElement, "Deleted language and expected language does not match");
             Assert.AreNotEqual(level, deletedLevel, "Deleted leven and expected level does not match");
         }
-    
-        [AfterScenario]
-        public void closeTestRun()
-        {
-            driver.Quit();
-        }
+
     }
 }

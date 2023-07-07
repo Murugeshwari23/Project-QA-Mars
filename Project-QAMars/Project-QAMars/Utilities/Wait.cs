@@ -8,9 +8,9 @@ using OpenQA.Selenium;
 
 namespace Project_QAMars.Utilities
 {
-    public class Wait
+    public class Wait : CommonDriver
     {
-        public static void WaitToBeClickable(IWebDriver driver, string locatortype, string locatorValue, int seconds)
+        public static void waitToBeClickable(IWebDriver driver, string locatortype, string locatorValue, int seconds)
         {
             var WaitTime = new WebDriverWait(driver, TimeSpan.FromSeconds(seconds));
             if (locatortype == "XPath")

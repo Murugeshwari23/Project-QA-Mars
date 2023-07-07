@@ -14,85 +14,75 @@ using SeleniumExtras.WaitHelpers;
 namespace Project_QAMars.Pages
 {
     public class LanguagePage : CommonDriver
-    {
+    { 
+        private static IWebElement AddNew               => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div"));
+        private static IWebElement AddLanguageTextBox   => driver.FindElement(By.Name("name"));
+        private static IWebElement ChooseLanguageLevel  => driver.FindElement(By.Name("level"));
+        private static IWebElement AddButton            => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[1]"));
+        private static IWebElement newLanguage          => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
+        private static IWebElement newLevel             => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[2]"));
+        private static IWebElement PencilIcon           => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[1]/i"));
+        private static IWebElement UpdateLangauge       => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[1]/input"));
+        private static IWebElement UpdateLevel          => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select"));
+        private static IWebElement UpdateButton         => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/span/input[1]"));
+        private static IWebElement createdLanguage      => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
+        private static IWebElement createdLevel         => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
+        private static IWebElement deletedElement       => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
+        private static IWebElement deletedLevel         => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
+
+
         //Adding New language to the language list
-        public void AddLanguage(IWebDriver driver, string language, string level)
+        public void AddLanguage(string language, string level)
         {
             //Click on AddNew button
-            IWebElement AddNew = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div"));
             AddNew.Click();
-            Thread.Sleep(1000);
-
             //Enter the language that needs to be added
-            IWebElement AddLanguageTextBox = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[1]/input"));
             AddLanguageTextBox.SendKeys(language);
-            Thread.Sleep(1000);
-
             //Choose the language level
-            IWebElement ChooseLanguageLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select"));
             ChooseLanguageLevel.Click();
             ChooseLanguageLevel.SendKeys(level);
-            Thread.Sleep(1000);
-
             //Click on Add button
-            IWebElement AddButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[1]"));
             AddButton.Click();
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
         }
-
-        public string getLanguage(IWebDriver driver)
+        public string getLanguage()
         {
-            IWebElement newLanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
             return newLanguage.Text;
         }
 
-        public string getLevel(IWebDriver driver)
+        public string getLevel()
         {
-            IWebElement newLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[2]"));
             return newLevel.Text;
 
         }
 
         //Updating an already existing language in the language list 
-        public void UpdateLanguage(IWebDriver driver, string language, string level)
+        public void UpdateLanguage(string language, string level)
         {
             //Click on pencilIcon
-            IWebElement PencilIcon = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[1]/i"));
             PencilIcon.Click();
-            Thread.Sleep(1000);
-
             //Edit the language
-            IWebElement UpdateLangauge = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[1]/input"));
             UpdateLangauge.Clear();
             UpdateLangauge.SendKeys(language);
-            Thread.Sleep(1000);
-
-            //Choose the level from the optional parameters
-            IWebElement UpdateLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select"));
+           //Choose the level from the drop down
             UpdateLevel.Click();
             UpdateLevel.SendKeys(level);
-            Thread.Sleep(1000);
-
             //Click on Update button
-            IWebElement UpdateButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/span/input[1]"));
             UpdateButton.Click();
             Thread.Sleep(2000);
-
         }
-        public string getEditedLanguage(IWebDriver driver)
+        public string getEditedLanguage()
         {
-            IWebElement createdLanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
-            return createdLanguage.Text;
+             return createdLanguage.Text;
         }
 
-        public string getEditedLevel(IWebDriver driver)
+        public string getEditedLevel()
         {
-            IWebElement createdLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
-            return createdLevel.Text;
+             return createdLevel.Text;
         }
 
         //Deleting a language from the language list
-        public void DeleteLanguage(IWebDriver driver, string language, string level)
+        public void DeleteLanguage(string language, string level)
         {
             // Find all rows in the table
             IReadOnlyCollection<IWebElement> rows = driver.FindElements(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr"));
@@ -105,7 +95,7 @@ namespace Project_QAMars.Pages
                 IWebElement languageLevel = row.FindElement(By.XPath("./td[2]"));
                 string languageText = languageElement.Text;
                 string languageLevelText = languageLevel.Text;
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
 
                 // Check if the language matches the provided text
                 if (languageText.Equals(language, StringComparison.OrdinalIgnoreCase) && languageLevelText.Equals(level, StringComparison.OrdinalIgnoreCase))
@@ -113,22 +103,19 @@ namespace Project_QAMars.Pages
                     // Find and click the delete icon in the row
                     IWebElement deleteIcon = row.FindElement(By.XPath("./td[3]/span[2]/i"));
                     deleteIcon.Click();
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1000);
                     break;
                 }
             }
         }
-        public string GetDeletedElement(IWebDriver driver)
+        public string GetDeletedElement()
         {
-            IWebElement deletedElement = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
             return deletedElement.Text;
         }
-        public string GetDeletedLevel(IWebDriver driver) 
+        public string GetDeletedLevel() 
         {
-            IWebElement deletedLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
             return deletedLevel.Text;
         }
-
     }
 }
 

@@ -5,41 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
+using Project_QAMars.Utilities;
 
 namespace Project_QAMars.Pages
 {
-    public class LoginPage
+    public class LoginPage : CommonDriver
     {
-        public void LoginSteps (IWebDriver driver)
-        {
-            // launch localhost 
+       private static IWebElement SignInButton => driver.FindElement(By.XPath("//*[@id=\"home\"]/div/div/div[1]/div/a"));
+       private static IWebElement Email => driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[1]/input"));
+       private static IWebElement Password => driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[2]/input"));
+       private static IWebElement RememberMe => driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[3]/div/input"));
+       private static IWebElement loginbutton => driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[4]/button"));
+
+        public void LoginSteps()
+        { 
             driver.Navigate().GoToUrl("http://localhost:5000/");
             driver.Manage().Window.Maximize();
-            Thread.Sleep(1000);
-
-            // enter valid username in the username field
-            IWebElement SignInButton = driver.FindElement(By.XPath("//*[@id=\"home\"]/div/div/div[1]/div/a"));
             SignInButton.Click();
             Thread.Sleep(1000);
-
-            // enter valid credentials email and password
-            IWebElement Email = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[1]/input"));
             Email.SendKeys("ammu.muru279@gmail.com");
-            Thread.Sleep(1000);
-
-            IWebElement Password = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[2]/input"));
-            Password.SendKeys("mvp123");
-            Thread.Sleep(1000);
-
-            IWebElement RememberMe = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[3]/div/input"));
+            Password.SendKeys("mvp123");  
             RememberMe.Click();
-            Thread.Sleep(1000);
-
-            // click login button
-            IWebElement loginbutton = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[4]/button"));
             loginbutton.Click();
-            Thread.Sleep(2000);
-
+            Thread.Sleep(3000);
         }
 
     }

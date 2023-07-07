@@ -10,7 +10,7 @@ namespace Project_QAMars.Pages
 {
     public class ProfilePage : CommonDriver
     {
-        public void GoToLanguageTab(IWebDriver driver)
+        public void GoToLanguageTab()
         {
             //Clicking on Language tab button in the profile page
             IWebElement LanguageTab = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[1]"));
