@@ -78,9 +78,11 @@ namespace Project_QAMars.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add language record with valid details")]
         [NUnit.Framework.CategoryAttribute("order(1)")]
-        [NUnit.Framework.TestCaseAttribute("French", "Basic", null)]
-        [NUnit.Framework.TestCaseAttribute("Hindi", "Basic", null)]
-        [NUnit.Framework.TestCaseAttribute("Spanish", "Conversational", null)]
+        [NUnit.Framework.TestCaseAttribute("English", "Fluent", null)]
+        [NUnit.Framework.TestCaseAttribute("French", "", null)]
+        [NUnit.Framework.TestCaseAttribute("", "", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Conversational", null)]
+        [NUnit.Framework.TestCaseAttribute("G*^54Hl", "", null)]
         [NUnit.Framework.TestCaseAttribute("English", "Fluent", null)]
         public void AddLanguageRecordWithValidDetails(string language, string level, string[] exampleTags)
         {
@@ -121,7 +123,11 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Update existing language record with valid details")]
         [NUnit.Framework.CategoryAttribute("order(2)")]
-        [NUnit.Framework.TestCaseAttribute("French", "Fluent", null)]
+        [NUnit.Framework.TestCaseAttribute("Tamil", "Basic", null)]
+        [NUnit.Framework.TestCaseAttribute("", "", null)]
+        [NUnit.Framework.TestCaseAttribute("English", "", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Fluent", null)]
+        [NUnit.Framework.TestCaseAttribute("#$56@$%", "Basic", null)]
         public void UpdateExistingLanguageRecordWithValidDetails(string language, string level, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -135,7 +141,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Language", language);
             argumentsOfScenario.Add("Level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update existing language record with valid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 21
+#line 22
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -145,13 +151,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 22
+#line 23
  testRunner.Given("User is logged into localhost URL successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 23
+#line 24
  testRunner.When(string.Format("Update \'{0}\' and \'{1}\' on an existing language record", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 24
+#line 25
  testRunner.Then(string.Format("The record should been updated \'{0}\' and \'{1}\' successfully", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -161,7 +167,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Delete the language record from the language list")]
         [NUnit.Framework.CategoryAttribute("order(3)")]
-        [NUnit.Framework.TestCaseAttribute("Hindi", "Conversational", null)]
+        [NUnit.Framework.TestCaseAttribute("Hindi", "Basic", null)]
         public void DeleteTheLanguageRecordFromTheLanguageList(string language, string level, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -175,7 +181,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Language", language);
             argumentsOfScenario.Add("Level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete the language record from the language list", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 32
+#line 36
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -185,13 +191,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 33
+#line 37
  testRunner.Given("User is logged into localhost URL successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 34
+#line 38
  testRunner.When(string.Format("Delete the record \'{0}\' and \'{1}\' from the language list", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 35
+#line 39
  testRunner.Then(string.Format("The record \'{0}\' and \'{1}\' should be deleted successfully", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

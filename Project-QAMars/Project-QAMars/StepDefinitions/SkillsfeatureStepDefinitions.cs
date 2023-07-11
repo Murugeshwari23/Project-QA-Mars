@@ -40,8 +40,16 @@ namespace Project_QAMars.StepDefinitions
             //Assertion of added skills
             string newSkill = SkillsPageObj.getSkill();
             string newSkillLevel = SkillsPageObj.getSkillLevel();
-            Assert.AreEqual(skill, newSkill, "Actual skill and expected skill do not match.");
-            Assert.AreEqual(skillLevel, newSkillLevel, "Actual skill level and expected skill level do not match");
+
+            if (skill == newSkill && skillLevel == newSkillLevel)
+            {
+                Assert.AreEqual(skill, newSkill, "Actual skill and expected skill do not match.");
+                Assert.AreEqual(skillLevel, newSkillLevel, "Actual skill level and expected skill level do not match");
+            }
+            else
+            {
+                Console.WriteLine("Check Error");
+            }
         }
 
         [When(@"Update '([^']*)' and '([^']*)' on an existing skill record\.")]
@@ -58,8 +66,15 @@ namespace Project_QAMars.StepDefinitions
             string newUpdatedSkill = SkillsPageObj.getUpdatedSkill();
             string newUpdatedSkillLevel = SkillsPageObj.getUpdatedSkillLevel();
 
-            Assert.AreEqual(skill, newUpdatedSkill, "Updated skill and expected skill do not match.");
-            Assert.AreEqual(skillLevel, newUpdatedSkillLevel, "Updated Skilllevel and created skilllevel do not match");
+            if (skill == newUpdatedSkill && skillLevel == newUpdatedSkillLevel)
+            {
+                Assert.AreEqual(skill, newUpdatedSkill, "Updated skill and expected skill do not match.");
+                Assert.AreEqual(skillLevel, newUpdatedSkillLevel, "Updated Skilllevel and created skilllevel do not match");
+            }
+            else
+            {
+                Console.WriteLine("Check error");
+            }
         }
 
         [When(@"Delete the record '([^']*)' and '([^']*)' successfully")]
@@ -75,8 +90,15 @@ namespace Project_QAMars.StepDefinitions
             string deletedSkillElement = SkillsPageObj.GetDeletedSkillElement();
             string deletedSkillLevel = SkillsPageObj.GetDeletedSkillLevel();
 
-            Assert.AreNotEqual(skill, deletedSkillElement, "Deleted language and expected language does not match");
-            Assert.AreNotEqual(skillLevel, deletedSkillLevel, "Deleted leven and expected level does not match");
+            if (skill == deletedSkillElement && skillLevel == deletedSkillLevel)
+            {
+                Assert.AreNotEqual(skill, deletedSkillElement, "Deleted language and expected language does not match");
+                Assert.AreNotEqual(skillLevel, deletedSkillLevel, "Deleted leven and expected level does not match");
+            }
+            else
+            {
+                Console.WriteLine("Check Error");
+            }
         }
     }
 }

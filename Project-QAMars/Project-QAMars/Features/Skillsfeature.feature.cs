@@ -77,7 +77,12 @@ namespace Project_QAMars.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add Skill recored with valid details")]
         [NUnit.Framework.CategoryAttribute("order(1)")]
-        [NUnit.Framework.TestCaseAttribute("C#", "Expert", null)]
+        [NUnit.Framework.TestCaseAttribute("Salesforce", "Beginner", null)]
+        [NUnit.Framework.TestCaseAttribute("%$#^&*", "Intermediate", null)]
+        [NUnit.Framework.TestCaseAttribute("", "", null)]
+        [NUnit.Framework.TestCaseAttribute("Java", "Beginner", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Expert", null)]
+        [NUnit.Framework.TestCaseAttribute("C#", "", null)]
         public void AddSkillRecoredWithValidDetails(string skill, string skillLevel, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -117,7 +122,11 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Update existing Skill records with valid details")]
         [NUnit.Framework.CategoryAttribute("order(2)")]
-        [NUnit.Framework.TestCaseAttribute("Salesforce", "Beginner", null)]
+        [NUnit.Framework.TestCaseAttribute("Salesforce", "Intermediate", null)]
+        [NUnit.Framework.TestCaseAttribute("Java", "Intermediate", null)]
+        [NUnit.Framework.TestCaseAttribute("&%$@#kj", "", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Beginner", null)]
+        [NUnit.Framework.TestCaseAttribute("", "", null)]
         public void UpdateExistingSkillRecordsWithValidDetails(string skill, string skillLevel, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -131,7 +140,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Skill", skill);
             argumentsOfScenario.Add("SkillLevel", skillLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update existing Skill records with valid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 18
+#line 22
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -141,13 +150,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 19
+#line 23
  testRunner.Given("User is logged into Skillswap website successfully.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 20
+#line 24
  testRunner.When(string.Format("Update \'{0}\' and \'{1}\' on an existing skill record.", skill, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 21
+#line 25
  testRunner.Then(string.Format("The skill record should been updated \'{0}\' and \'{1}\' Successfully", skill, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -157,7 +166,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Delete the Skill from the skill lists")]
         [NUnit.Framework.CategoryAttribute("order(3)")]
-        [NUnit.Framework.TestCaseAttribute("Salesforce", "Expert", null)]
+        [NUnit.Framework.TestCaseAttribute("Salesforce", "Beginner", null)]
         public void DeleteTheSkillFromTheSkillLists(string skill, string skillLevel, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -171,7 +180,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Skill", skill);
             argumentsOfScenario.Add("SkillLevel", skillLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete the Skill from the skill lists", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 28
+#line 36
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -181,13 +190,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 29
+#line 37
  testRunner.Given("User is logged into Skillswap website successfully.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 30
+#line 38
  testRunner.When(string.Format("Delete the record \'{0}\' and \'{1}\' successfully", skill, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 31
+#line 39
  testRunner.Then(string.Format("The record \'{0}\' and \'{1}\' should deleted successfully", skill, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

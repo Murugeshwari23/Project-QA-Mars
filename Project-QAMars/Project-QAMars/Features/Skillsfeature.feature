@@ -11,14 +11,12 @@ Scenario:Add Skill recored with valid details
 
 	Examples: 
 	| Skill      | SkillLevel   |
-	| C#		 | Expert       |
-	| Salesforce | Intermediate |
-	| UNIX       | Beginner     |
-	| %$#^&*     | Expert       |
-	| PYTHON     |              |
+	| Salesforce | Beginner     |
+	| %$#^&*     | Intermediate |
 	|            |              |
-	|            | Beginner     |
-
+	| Java       | Beginner     |
+	|            | Expert		|
+	| C#		 |              |
 
 	@order(2)
 	Scenario Outline: Update existing Skill records with valid details
@@ -28,10 +26,10 @@ Scenario:Add Skill recored with valid details
 
 	Examples: 
 	| Skill      | SkillLevel   |
-	| Salesforce | Beginner     |
 	| Salesforce | Intermediate |
+	| Java		 | Intermediate |
 	| &%$@#kj    |              |
-	|            | Intermediate |
+	|            | Beginner		|
 	|            |              |
 
 	@order(3)
@@ -42,7 +40,7 @@ Scenario:Add Skill recored with valid details
 
 	Examples:
 	| Skill      | SkillLevel		|
-	| Salesforce | Expert		    |
+	| Salesforce | Beginner		    |
 
 
 

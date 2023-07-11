@@ -10,6 +10,7 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using Project_QAMars.Utilities;
 using SeleniumExtras.WaitHelpers;
+using TechTalk.SpecFlow.Bindings;
 
 namespace Project_QAMars.Pages
 {
@@ -27,8 +28,10 @@ namespace Project_QAMars.Pages
         private static IWebElement UpdateButton         => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/span/input[1]"));
         private static IWebElement createdLanguage      => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
         private static IWebElement createdLevel         => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
+        private static IWebElement deleteLanguageTab => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[1]"));
         private static IWebElement deletedElement       => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
         private static IWebElement deletedLevel         => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
+        private static IWebElement languageDeleteIcon   => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[2]/i"));
 
 
         //Adding New language to the language list
@@ -36,14 +39,30 @@ namespace Project_QAMars.Pages
         {
             //Click on AddNew button
             AddNew.Click();
+            Thread.Sleep(1000);
             //Enter the language that needs to be added
             AddLanguageTextBox.SendKeys(language);
+            Thread.Sleep(1000);
             //Choose the language level
             ChooseLanguageLevel.Click();
+            Thread.Sleep(1000);
             ChooseLanguageLevel.SendKeys(level);
             //Click on Add button
             AddButton.Click();
             Thread.Sleep(2000);
+            IWebElement messageBox = driver.FindElement(By.XPath("//div[@class='ns-box-inner']"));
+            Thread.Sleep(1000);
+            //get the text of the message element
+            string actualMessage = messageBox.Text;
+            Console.WriteLine(actualMessage);
+
+            //verify the expected message text
+            string expectedMessage1 = language+ " has been added to your languages";
+            string expectedMessage2 = "Please enter language and level";
+            string expectedMessage3 = "This language is already exist in your language list.";
+            string expectedMessage4 = "Duplicated data";
+
+            Assert.That(actualMessage, Is.EqualTo(expectedMessage1).Or.EqualTo(expectedMessage2).Or.EqualTo(expectedMessage3).Or.EqualTo(expectedMessage4));
         }
         public string getLanguage()
         {
@@ -53,7 +72,6 @@ namespace Project_QAMars.Pages
         public string getLevel()
         {
             return newLevel.Text;
-
         }
 
         //Updating an already existing language in the language list 
@@ -63,19 +81,33 @@ namespace Project_QAMars.Pages
             PencilIcon.Click();
             //Edit the language
             UpdateLangauge.Clear();
+            Thread.Sleep(1000);
             UpdateLangauge.SendKeys(language);
            //Choose the level from the drop down
             UpdateLevel.Click();
+            Thread.Sleep(1000);
             UpdateLevel.SendKeys(level);
+            Thread.Sleep(1000);
             //Click on Update button
             UpdateButton.Click();
             Thread.Sleep(2000);
+            IWebElement messageBox = driver.FindElement(By.XPath("//div[@class='ns-box-inner']"));
+            Thread.Sleep(1000);
+            //get the text of the message element
+            string actualMessage = messageBox.Text;
+            Console.WriteLine(actualMessage);
+
+            //verify the expected message text
+            string expectedMessage1 = language + " has been updated to your languages";
+            string expectedMessage2 = "Please enter language and level";
+            string expectedMessage3 = "This language is already added to your language list.";
+           
+            Assert.That(actualMessage, Is.EqualTo(expectedMessage1).Or.EqualTo(expectedMessage2).Or.EqualTo(expectedMessage3));
         }
         public string getEditedLanguage()
         {
              return createdLanguage.Text;
         }
-
         public string getEditedLevel()
         {
              return createdLevel.Text;
@@ -84,29 +116,21 @@ namespace Project_QAMars.Pages
         //Deleting a language from the language list
         public void DeleteLanguage(string language, string level)
         {
-            // Find all rows in the table
-            IReadOnlyCollection<IWebElement> rows = driver.FindElements(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr"));
+            deleteLanguageTab.Click();
+            var deleteIcon = driver.FindElement(By.XPath($"//tbody[tr[td[text()='{language}'] and td[text()='{level}']]]//i[@class='remove icon']"));
+            // Find and click the delete icon in the row
+            deleteIcon.Click();
             Thread.Sleep(2000);
+            //get the text of the message element
+            IWebElement messageBox = driver.FindElement(By.XPath("//div[@class='ns-box-inner']"));
+            Thread.Sleep(1000);
+            string actualMessage = messageBox.Text;
+            Console.WriteLine(actualMessage);
 
-            foreach (IWebElement row in rows)
-            {
-                // Get the text of the first column (language column) in the row
-                IWebElement languageElement = row.FindElement(By.XPath("./td[1]"));
-                IWebElement languageLevel = row.FindElement(By.XPath("./td[2]"));
-                string languageText = languageElement.Text;
-                string languageLevelText = languageLevel.Text;
-                Thread.Sleep(1000);
+            //verify the expected message text
+            string expectedMessage1 = language + " has been deleted from your languages";
 
-                // Check if the language matches the provided text
-                if (languageText.Equals(language, StringComparison.OrdinalIgnoreCase) && languageLevelText.Equals(level, StringComparison.OrdinalIgnoreCase))
-                {
-                    // Find and click the delete icon in the row
-                    IWebElement deleteIcon = row.FindElement(By.XPath("./td[3]/span[2]/i"));
-                    deleteIcon.Click();
-                    Thread.Sleep(1000);
-                    break;
-                }
-            }
+            Assert.That(actualMessage, Is.EqualTo(expectedMessage1));
         }
         public string GetDeletedElement()
         {
