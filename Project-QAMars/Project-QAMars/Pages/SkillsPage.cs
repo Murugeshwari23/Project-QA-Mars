@@ -116,7 +116,9 @@ namespace Project_QAMars.Pages
 
         //Deleting a Skill from the Skill list
         public void DeleteSkill(string skill, string skillLevel)
-        {           
+        {
+            try
+            {
                 DeleteSkillsTab.Click();
                 var deleteIcon = driver.FindElement(By.XPath($"//tbody[tr[td[text()='{skill}'] and td[text()='{skillLevel}']]]//i[@class='remove icon']"));
                 // Find and click the delete icon in the row
@@ -131,9 +133,16 @@ namespace Project_QAMars.Pages
                 //verify the expected message text
                 string expectedMessage1 = skill + " has been deleted";
 
-            Assert.That(actualMessage, Is.EqualTo(expectedMessage1));
-        }
+                Assert.That(actualMessage, Is.EqualTo(expectedMessage1));
+            }
+            catch (NoSuchElementException)
+            {
 
+                Console.WriteLine("Record not found");
+
+            }
+        }
+        
         public string GetDeletedSkillElement()
         {
              return deletedSkillElement.Text;

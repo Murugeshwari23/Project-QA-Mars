@@ -78,12 +78,11 @@ namespace Project_QAMars.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add language record with valid details")]
         [NUnit.Framework.CategoryAttribute("order(1)")]
-        [NUnit.Framework.TestCaseAttribute("English", "Fluent", null)]
-        [NUnit.Framework.TestCaseAttribute("French", "", null)]
-        [NUnit.Framework.TestCaseAttribute("", "", null)]
-        [NUnit.Framework.TestCaseAttribute("", "Conversational", null)]
-        [NUnit.Framework.TestCaseAttribute("G*^54Hl", "", null)]
-        [NUnit.Framework.TestCaseAttribute("English", "Fluent", null)]
+        [NUnit.Framework.TestCaseAttribute("French", "Fluent", null)]
+        [NUnit.Framework.TestCaseAttribute("Tamil", "Choose Language Level", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Choose Language Level", null)]
+        [NUnit.Framework.TestCaseAttribute("G*^54Hl", "Conversational", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Basic", null)]
         public void AddLanguageRecordWithValidDetails(string language, string level, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -123,11 +122,11 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Update existing language record with valid details")]
         [NUnit.Framework.CategoryAttribute("order(2)")]
-        [NUnit.Framework.TestCaseAttribute("Tamil", "Basic", null)]
-        [NUnit.Framework.TestCaseAttribute("", "", null)]
-        [NUnit.Framework.TestCaseAttribute("English", "", null)]
-        [NUnit.Framework.TestCaseAttribute("", "Fluent", null)]
-        [NUnit.Framework.TestCaseAttribute("#$56@$%", "Basic", null)]
+        [NUnit.Framework.TestCaseAttribute("Spanish", "Fluent", null)]
+        [NUnit.Framework.TestCaseAttribute("Hindi", "Fluent", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Language Level", null)]
+        [NUnit.Framework.TestCaseAttribute("French", "Language Level", null)]
+        [NUnit.Framework.TestCaseAttribute("$% 673E", "Native/Bilingual", null)]
         public void UpdateExistingLanguageRecordWithValidDetails(string language, string level, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -141,7 +140,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Language", language);
             argumentsOfScenario.Add("Level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update existing language record with valid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 22
+#line 21
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -151,13 +150,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 23
+#line 22
  testRunner.Given("User is logged into localhost URL successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 24
+#line 23
  testRunner.When(string.Format("Update \'{0}\' and \'{1}\' on an existing language record", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 25
+#line 24
  testRunner.Then(string.Format("The record should been updated \'{0}\' and \'{1}\' successfully", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

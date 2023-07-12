@@ -42,10 +42,8 @@ namespace Project_QAMars.Pages
             Thread.Sleep(1000);
             //Enter the language that needs to be added
             AddLanguageTextBox.SendKeys(language);
-            Thread.Sleep(1000);
             //Choose the language level
             ChooseLanguageLevel.Click();
-            Thread.Sleep(1000);
             ChooseLanguageLevel.SendKeys(level);
             //Click on Add button
             AddButton.Click();
@@ -81,13 +79,11 @@ namespace Project_QAMars.Pages
             PencilIcon.Click();
             //Edit the language
             UpdateLangauge.Clear();
-            Thread.Sleep(1000);
             UpdateLangauge.SendKeys(language);
            //Choose the level from the drop down
             UpdateLevel.Click();
             Thread.Sleep(1000);
             UpdateLevel.SendKeys(level);
-            Thread.Sleep(1000);
             //Click on Update button
             UpdateButton.Click();
             Thread.Sleep(2000);

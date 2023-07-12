@@ -77,12 +77,11 @@ namespace Project_QAMars.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add Skill recored with valid details")]
         [NUnit.Framework.CategoryAttribute("order(1)")]
-        [NUnit.Framework.TestCaseAttribute("Salesforce", "Beginner", null)]
-        [NUnit.Framework.TestCaseAttribute("%$#^&*", "Intermediate", null)]
-        [NUnit.Framework.TestCaseAttribute("", "", null)]
-        [NUnit.Framework.TestCaseAttribute("Java", "Beginner", null)]
         [NUnit.Framework.TestCaseAttribute("", "Expert", null)]
-        [NUnit.Framework.TestCaseAttribute("C#", "", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Choose Skill Level", null)]
+        [NUnit.Framework.TestCaseAttribute("%$#^&*", "Intermediate", null)]
+        [NUnit.Framework.TestCaseAttribute("C#", "Choose Skill Level", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Beginner", null)]
         public void AddSkillRecoredWithValidDetails(string skill, string skillLevel, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -122,11 +121,11 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Update existing Skill records with valid details")]
         [NUnit.Framework.CategoryAttribute("order(2)")]
-        [NUnit.Framework.TestCaseAttribute("Salesforce", "Intermediate", null)]
-        [NUnit.Framework.TestCaseAttribute("Java", "Intermediate", null)]
-        [NUnit.Framework.TestCaseAttribute("&%$@#kj", "", null)]
-        [NUnit.Framework.TestCaseAttribute("", "Beginner", null)]
-        [NUnit.Framework.TestCaseAttribute("", "", null)]
+        [NUnit.Framework.TestCaseAttribute("Java", "Expert", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Skill Level", null)]
+        [NUnit.Framework.TestCaseAttribute("C#", "Skill Level", null)]
+        [NUnit.Framework.TestCaseAttribute("Salesforce", "Beginner", null)]
+        [NUnit.Framework.TestCaseAttribute("5$#@67 (", "Expert", null)]
         public void UpdateExistingSkillRecordsWithValidDetails(string skill, string skillLevel, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -140,7 +139,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Skill", skill);
             argumentsOfScenario.Add("SkillLevel", skillLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update existing Skill records with valid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 22
+#line 21
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -150,13 +149,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 23
+#line 22
  testRunner.Given("User is logged into Skillswap website successfully.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 24
+#line 23
  testRunner.When(string.Format("Update \'{0}\' and \'{1}\' on an existing skill record.", skill, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 25
+#line 24
  testRunner.Then(string.Format("The skill record should been updated \'{0}\' and \'{1}\' Successfully", skill, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

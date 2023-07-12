@@ -10,13 +10,12 @@ Scenario:Add Skill recored with valid details
 	Then New skill record with '<Skill>' and '<SkillLevel>' are added successfully. 
 
 	Examples: 
-	| Skill      | SkillLevel   |
-	| Salesforce | Beginner     |
-	| %$#^&*     | Intermediate |
-	|            |              |
-	| Java       | Beginner     |
-	|            | Expert		|
-	| C#		 |              |
+	| Skill  | SkillLevel         |
+	|        | Expert             |
+	|        | Choose Skill Level |
+	| %$#^&* | Intermediate       |
+	| C#     | Choose Skill Level |
+	|        | Beginner           |
 
 	@order(2)
 	Scenario Outline: Update existing Skill records with valid details
@@ -25,12 +24,13 @@ Scenario:Add Skill recored with valid details
 	Then The skill record should been updated '<Skill>' and '<SkillLevel>' Successfully
 
 	Examples: 
-	| Skill      | SkillLevel   |
-	| Salesforce | Intermediate |
-	| Java		 | Intermediate |
-	| &%$@#kj    |              |
-	|            | Beginner		|
-	|            |              |
+	| Skill      | SkillLevel  |
+	| Java       | Expert      |
+	|            | Skill Level |
+	| C#         | Skill Level |
+	| Salesforce | Beginner    |
+	| 5$#@67 (   | Expert      |
+
 
 	@order(3)
 	Scenario Outline: Delete the Skill from the skill lists
