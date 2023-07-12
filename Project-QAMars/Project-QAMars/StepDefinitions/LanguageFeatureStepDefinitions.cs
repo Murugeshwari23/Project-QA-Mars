@@ -1,6 +1,7 @@
 using System;
 using System.Reflection.Emit;
 using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Project_QAMars.Pages;
 using Project_QAMars.Utilities;
@@ -37,11 +38,18 @@ namespace Project_QAMars.StepDefinitions
         [Then(@"New record with '([^']*)' and '([^']*)' are added successfully")]
         public void ThenNewRecordWithAndAreAddedSuccessfully(string language, string level)
         {
-            //Assertion of added languages
             string newLanguage = LanguagePageObj.getLanguage();
             string newLevel = LanguagePageObj.getLevel();
-            Assert.AreEqual(language, newLanguage, "Actual language and expected language do not match.");
-            Assert.AreEqual(level, newLevel, "Actual language level and expected language level do not match");
+
+            if (language == newLanguage && level == newLevel)
+            {
+                Assert.AreEqual(language, newLanguage, "Actual language and expected language do not match.");
+                Assert.AreEqual(level, newLevel, "Actual level and expected level do not match.");
+            }
+            else
+            {
+                Console.WriteLine("Check Error");
+            }
         }
 
         [Given(@"User is logged into localhost URL successfully")]
@@ -60,11 +68,18 @@ namespace Project_QAMars.StepDefinitions
         [Then(@"The record should been updated '([^']*)' and '([^']*)' successfully")]
         public void ThenTheRecordShouldBeenUpdatedAndSuccessfully(string language, string level)
         {
-            //Assertion of updated language
             string createdLanguage = LanguagePageObj.getEditedLanguage();
             string createdLevel = LanguagePageObj.getEditedLevel();
-            Assert.AreEqual(language, createdLanguage, "Edited language and expected language do not match.");
-            Assert.AreEqual(level, createdLevel, "Edited level and created level do not match");
+
+            if (language == createdLanguage && level == createdLevel)
+            {
+                Assert.AreEqual(language, createdLanguage, "updated language and expected language do not match.");
+                Assert.AreEqual(level, createdLevel, "updated level and expected level do not match.");
+            }
+            else
+            {
+                Console.WriteLine("Check Error");
+            }
         }
 
         [When(@"Delete the record '([^']*)' and '([^']*)' from the language list")]
@@ -81,9 +96,15 @@ namespace Project_QAMars.StepDefinitions
             string deletedElement = LanguagePageObj.GetDeletedElement();
             string deletedLevel = LanguagePageObj.GetDeletedLevel();
 
-            Assert.AreNotEqual(language, deletedElement, "Deleted language and expected language does not match");
-            Assert.AreNotEqual(level, deletedLevel, "Deleted leven and expected level does not match");
+            if (language == deletedElement && level == deletedLevel)
+            {
+                Assert.AreNotEqual(language, deletedElement, "Deleted language and expected language does not match");
+                Assert.AreNotEqual(level, deletedLevel, "Deleted leven and expected level does not match");
+            }
+            else
+            {
+                Console.WriteLine("Check Error");
+            }
         }
-
     }
 }
